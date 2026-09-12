@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Tool output
+reports/
+*.pcap
+
+# Sensitive local operational skill (C2 creds, device inventory)
+.opencode/skills/iot-blue-team-audit/
+
+# Secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+*.der
+*.p12
+*.pfx
+*.token
+*.secret
+credentials*
+secrets/
+
+# Captures and dumps
+*.bin
+*.img
+*.dump
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/

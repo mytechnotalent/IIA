@@ -1,0 +1,16 @@
+#!/bin/sh
+# Block commits that stage secrets or sensitive operational data.
+# Install: cp this file to .git/hooks/pre-commit && chmod +x it.
+
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+SCANNER="$ROOT/.opencode/skills/repo-secret-hygiene/scan_secrets.py"
+
+if [ ! -f "$SCANNER" ]; then
+    echo "secret-hygiene: scanner missing; refusing commit" >&2
+    exit 1
+fi
+
+if ! python3 "$SCANNER" --root "$ROOT" --staged; then
+    echo "secret-hygiene: commit blocked; remove the secret or fix .gitignore" >&2
+    exit 1
+fi

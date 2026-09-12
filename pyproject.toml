@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iota-intel-audit"
+version = "0.1.0"
+description = "IoT Hardware and Network Intelligence Auditor for Blue Teams"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Kevin Thomas" }]
+keywords = [
+    "iot", "blue-team", "security", "audit", "bluetooth", "pcap",
+    "wifi", "cve", "nvd", "fcc", "vendor",
+]
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Programming Language :: Python :: 3",
+    "Operating System :: MacOS",
+    "Topic :: Security",
+]
+
+[project.optional-dependencies]
+ble = ["bleak>=0.20"]
+pcap = ["scapy>=2.4"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+iota-intel-audit = "iiatool.__main__:main"
+
+[tool.setuptools]
+packages = ["iiatool", "iiatool.firmware", "iiatool.static"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
